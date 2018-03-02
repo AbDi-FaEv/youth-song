@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TextField from 'material-ui/TextField';
 
 class Search extends Component {
 
@@ -8,7 +9,11 @@ class Search extends Component {
 
     render() {
         return (
-            <h1>Search component</h1>
+            <TextField
+                hintText="Введите текст"
+                floatingLabelText="Поиск по заглавию"
+                onChange={this.props.filterList}
+            />
         )
     }
 }

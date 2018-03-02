@@ -6,6 +6,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import App from './components/App';
 
+import '../css/grid.css';
+
 const rootEl = document.getElementById('root');
 
 ReactDOM.render(

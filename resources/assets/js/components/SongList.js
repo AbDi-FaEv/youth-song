@@ -16,8 +16,7 @@ class SongList extends Component {
             />
         ));
         return (
-            <div>
-                <h1>Songs List</h1>
+            <div className="card-wrapper">
                 { songs }
             </div>
         )

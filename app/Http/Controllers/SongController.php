@@ -12,10 +12,10 @@ class SongController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $songs = Song::all();
-
+        $songs = Song::where('title', 'like', '%' . $request['search'] . '%')->get();
+//        dd($request['search']);
         return response()->json($songs, 200);
     }
 

@@ -8,21 +8,39 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { songs: []}
+        this.state = {
+            songs: [],
+            filteredSongs: []
+        }
+        this.filterList = this.filterList.bind(this)
     }
+    filterList(e) {
+        let searchValue = e.target.value.toLowerCase();
+        let url = '/api/songs?search=' + searchValue;
+        axios
+            .get(url)
+            .then(response => this.setState({ songs : response.data, filteredSongs:response.data}))
+            .catch(error => console.log(error));
 
+        // if (e.target.value.length >= 3) {
+        //     let filteredList = this.state.songs.filter(function(item){
+        //         return item.title.toLowerCase().search(e.target.value.toLowerCase())!== -1;
+        //     });
+        //     this.setState({filteredSongs: filteredList});
+        // }
+    }
     componentDidMount() {
         // TODO REDUX
         axios
-            .get('/api/songs')
-            .then(response => this.setState({ songs : response.data}))
+            .get('/api/songs?search=')
+            .then(response => this.setState({ songs : response.data, filteredSongs:response.data}))
             .catch(error => console.log(error));
     }
     render() {
         return (
             <div>
-                <Search />
-                <SongList songs={this.state.songs}/>
+                <Search filterList={this.filterList}/>
+                <SongList songs={this.state.filteredSongs}/>
             </div>
         );
     }
