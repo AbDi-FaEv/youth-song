@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/songs', 'SongController@index');
+Route::get('/songs/short', 'SongController@shortIndex');

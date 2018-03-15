@@ -15,7 +15,14 @@ class SongController extends Controller
     public function index(Request $request)
     {
         $songs = Song::where('title', 'like', '%' . $request['search'] . '%')->get();
-//        dd($request['search']);
+
+        return response()->json($songs, 200);
+    }
+
+    public function shortIndex(Request $request)
+    {
+        $songs = Song::select('id', 'title')->get()->toArray();
+
         return response()->json($songs, 200);
     }
 
